@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://csqjumiqhqx1s"]
+
+[ext_resource type="PackedScene" uid="uid://ct4r6n6vmiob" path="res://assets/furniture/closets/closet_v1.glb" id="1_jdn5d"]
+[ext_resource type="Material" uid="uid://demjev8beyfkh" path="res://assets/materials/wooden/m_wood_dark.tres" id="2_ri8fh"]
+[ext_resource type="Material" uid="uid://bmrfi0vkstydh" path="res://assets/materials/wooden/m_wood_mild.tres" id="3_xcixu"]
+[ext_resource type="Material" uid="uid://ddmwblkcpq8gb" path="res://assets/materials/wooden/m_wood_light.tres" id="4_rflh6"]
+
+[node name="closet_v1" type="Node3D"]
+
+[node name="closet_v1" parent="." instance=ExtResource("1_jdn5d")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+
+[node name="Base_001" parent="closet_v1/closet comtroller" index="0"]
+material_override = ExtResource("2_ri8fh")
+
+[node name="Base_002" parent="closet_v1/closet comtroller" index="1"]
+transform = Transform3D(5.677006, 0, 0, 0, 5.6770062, 0, 0, 0, 5.677006, 4.558524, 0.57330155, 1.7999834)
+material_override = ExtResource("3_xcixu")
+
+[node name="Base_008" parent="closet_v1/closet comtroller/Base_002" index="0"]
+material_override = ExtResource("2_ri8fh")
+
+[node name="Cube_026" parent="closet_v1/closet comtroller/Base_002" index="1"]
+material_override = ExtResource("4_rflh6")
+
+[node name="Base_005" parent="closet_v1/closet comtroller" index="2"]
+material_override = ExtResource("3_xcixu")
+
+[node name="Base_009" parent="closet_v1/closet comtroller/Base_005" index="0"]
+material_override = ExtResource("2_ri8fh")
+
+[node name="Cube_080" parent="closet_v1/closet comtroller/Base_005" index="1"]
+material_override = ExtResource("4_rflh6")
+
+[node name="Drawer 1_005" parent="closet_v1/closet comtroller" index="3"]
+material_override = ExtResource("2_ri8fh")
+
+[node name="Drawer 1_006" parent="closet_v1/closet comtroller" index="4"]
+material_override = ExtResource("2_ri8fh")
+
+[node name="Drawer 1_007" parent="closet_v1/closet comtroller" index="5"]
+material_override = ExtResource("2_ri8fh")
+
+[editable path="closet_v1"]

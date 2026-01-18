@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://dec26lcjbtx1s"]
+
+[ext_resource type="Texture2D" uid="uid://d002gccqyn1un" path="res://assets/textures/wodden/old_planks_02/old_planks_02_diff_4k.jpg" id="1_4g3p8"]
+[ext_resource type="Texture2D" uid="uid://ycsl1gh8io5r" path="res://assets/textures/wodden/old_planks_02/old_planks_02_ao_4k.jpg" id="2_xn8qp"]
+[ext_resource type="Texture2D" uid="uid://cgodtbmn45mhk" path="res://assets/textures/wodden/old_planks_02/old_planks_02_disp_4k.png" id="3_x174y"]
+[ext_resource type="Texture2D" uid="uid://bec0u7y07t4jg" path="res://assets/textures/wodden/old_planks_02/old_planks_02_nor_gl_4k.png" id="4_w0qyj"]
+[ext_resource type="Texture2D" uid="uid://o770627oa7b" path="res://assets/textures/wodden/old_planks_02/old_planks_02_rough_4k.png" id="5_jl40c"]
+
+[resource]
+albedo_texture = ExtResource("1_4g3p8")
+roughness_texture = ExtResource("5_jl40c")
+normal_enabled = true
+normal_texture = ExtResource("4_w0qyj")
+ao_enabled = true
+ao_texture = ExtResource("2_xn8qp")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_x174y")
+uv1_scale = Vector3(4, 4, 4)

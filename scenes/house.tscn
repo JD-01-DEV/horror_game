@@ -1,0 +1,344 @@
+[gd_scene load_steps=12 format=3 uid="uid://cst0dyd553dvs"]
+
+[ext_resource type="Material" uid="uid://b0jjgfoto8v4n" path="res://assets/materials/wooden/planks/m_plank_grey.tres" id="1_qtlar"]
+[ext_resource type="Material" uid="uid://dec26lcjbtx1s" path="res://assets/materials/wooden/planks/m_plank_grey_old.tres" id="1_rk7hg"]
+[ext_resource type="PackedScene" uid="uid://csqjumiqhqx1s" path="res://scenes/furniture/closet_v_1.tscn" id="3_rk7hg"]
+[ext_resource type="PackedScene" uid="uid://dllt7a77se5wp" path="res://scenes/furniture/stack_v_1.tscn" id="4_se78b"]
+[ext_resource type="PackedScene" uid="uid://2op3sdfvv7xe" path="res://scenes/furniture/table_v_1.tscn" id="5_3bgk5"]
+[ext_resource type="PackedScene" uid="uid://cp2al2imkasbn" path="res://scenes/furniture/table_v_2.tscn" id="6_f74lx"]
+[ext_resource type="PackedScene" uid="uid://mbnnpjnrhapr" path="res://scenes/furniture/table_v_4.tscn" id="7_ptc3g"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qtlar"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ptc3g"]
+size = Vector3(51, 3, 32)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rk7hg"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_se78b"]
+
+[node name="House" type="Node3D"]
+
+[node name="Hallway" type="Node3D" parent="."]
+
+[node name="floor" type="Node3D" parent="Hallway"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hallway/floor"]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, 0, 0, 0)
+material_override = ExtResource("1_rk7hg")
+mesh = SubResource("PlaneMesh_qtlar")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hallway/floor"]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, 10, 0, 0)
+material_override = ExtResource("1_rk7hg")
+mesh = SubResource("PlaneMesh_qtlar")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Hallway/floor"]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, 10, 0, -10)
+material_override = ExtResource("1_rk7hg")
+mesh = SubResource("PlaneMesh_qtlar")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Hallway/floor"]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, 20, 0, -10)
+material_override = ExtResource("1_rk7hg")
+mesh = SubResource("PlaneMesh_qtlar")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Hallway/floor"]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, 20, 0, 0)
+material_override = ExtResource("1_rk7hg")
+mesh = SubResource("PlaneMesh_qtlar")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Hallway/floor"]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, 20, 0, 10)
+material_override = ExtResource("1_rk7hg")
+mesh = SubResource("PlaneMesh_qtlar")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Hallway/floor"]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, 30, 0, 10)
+material_override = ExtResource("1_rk7hg")
+mesh = SubResource("PlaneMesh_qtlar")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Hallway/floor"]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, 30, 0, 0)
+material_override = ExtResource("1_rk7hg")
+mesh = SubResource("PlaneMesh_qtlar")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Hallway/floor"]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, 40, 0, 0)
+material_override = ExtResource("1_rk7hg")
+mesh = SubResource("PlaneMesh_qtlar")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Hallway/floor"]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, 40, 0, -10)
+material_override = ExtResource("1_rk7hg")
+mesh = SubResource("PlaneMesh_qtlar")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Hallway/floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hallway/floor/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -1.4589844, 0.5)
+shape = SubResource("BoxShape3D_ptc3g")
+
+[node name="walls" type="Node3D" parent="Hallway"]
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Hallway/walls"]
+transform = Transform3D(-2.1855695e-07, 5, -1.09278474e-07, 0, -2.1855695e-07, -2.5, -5, -2.1855695e-07, 4.7767136e-15, -4.8994646, 2.503813, 0.04890895)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_rk7hg")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="Hallway/walls"]
+transform = Transform3D(-2.1855695e-07, 5, -1.09278474e-07, 0, -2.1855695e-07, -2.5, -5, -2.1855695e-07, 4.7767136e-15, 15.068774, 2.503813, 9.966902)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_rk7hg")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Hallway/walls"]
+transform = Transform3D(5, 0, 0, 0, -2.1855695e-07, -2.5, 0, 5, -1.09278474e-07, 0.10053539, 2.503813, -4.951091)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_rk7hg")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="Hallway/walls"]
+transform = Transform3D(-5, -4.371139e-07, 9.553429e-15, 0, -2.1855696e-07, -2.5, 4.371139e-07, -5, 1.0927848e-07, 0.100535385, 2.503813, 4.9887114)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_rk7hg")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="Hallway/walls"]
+transform = Transform3D(-5, -4.371139e-07, 9.553429e-15, 0, -2.1855696e-07, -2.5, 4.371139e-07, -5, 1.0927848e-07, 10.100535, 2.503813, 4.9887114)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_rk7hg")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="Hallway/walls"]
+transform = Transform3D(-5, -4.371139e-07, 9.553429e-15, 0, -2.1855696e-07, -2.5, 4.371139e-07, -5, 1.0927848e-07, 39.932045, 2.503813, 5.010227)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_rk7hg")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="Hallway/walls"]
+transform = Transform3D(-5, -4.371139e-07, 9.553429e-15, 0, -2.1855696e-07, -2.5, 4.371139e-07, -5, 1.0927848e-07, 30.100536, 2.503813, 14.840206)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_rk7hg")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="Hallway/walls"]
+transform = Transform3D(-5, -4.371139e-07, 9.553429e-15, 0, -2.1855696e-07, -2.5, 4.371139e-07, -5, 1.0927848e-07, 20.100536, 2.503813, 14.840206)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_rk7hg")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Hallway/walls"]
+transform = Transform3D(5, 0, 0, 0, -2.1855695e-07, -2.5, 0, 5, -1.09278474e-07, 10.100535, 2.503813, -14.951091)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_rk7hg")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Hallway/walls"]
+transform = Transform3D(5, 0, 0, 0, -2.1855695e-07, -2.5, 0, 5, -1.09278474e-07, 20.100536, 2.503813, -14.951091)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_rk7hg")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D21" type="MeshInstance3D" parent="Hallway/walls"]
+transform = Transform3D(5, 0, 0, 0, -2.1855695e-07, -2.5, 0, 5, -1.09278474e-07, 40.100536, 2.503813, -14.951091)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_rk7hg")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="Hallway/walls"]
+transform = Transform3D(5, 0, 0, 0, -2.1855695e-07, -2.5, 0, 5, -1.09278474e-07, 30.100536, 2.503813, -4.951091)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_rk7hg")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Hallway/walls"]
+transform = Transform3D(-2.1855695e-07, 5, -1.09278474e-07, 0, -2.1855695e-07, -2.5, -5, -2.1855695e-07, 4.7767136e-15, 5.1005354, 2.503813, -9.951091)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_rk7hg")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="Hallway/walls"]
+transform = Transform3D(-2.1855695e-07, 5, -1.09278474e-07, 0, -2.1855695e-07, -2.5, -5, -2.1855695e-07, 4.7767136e-15, 35.100536, 2.503813, -9.951091)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_rk7hg")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Hallway/walls"]
+transform = Transform3D(-2.1855695e-07, -5, 1.0927848e-07, 7.7647026e-22, -2.1855696e-07, -2.5, 5, -2.1855695e-07, 4.7767153e-15, 25.100536, 2.503813, -9.951091)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_rk7hg")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Hallway/walls"]
+transform = Transform3D(-2.1855695e-07, -5, 1.0927848e-07, 7.7647026e-22, -2.1855696e-07, -2.5, 5, -2.1855695e-07, 4.7767153e-15, 44.777306, 2.503813, -9.951091)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_rk7hg")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Hallway/walls"]
+transform = Transform3D(-2.1855695e-07, -5, 1.0927848e-07, 7.7647026e-22, -2.1855696e-07, -2.5, 5, -2.1855695e-07, 4.7767153e-15, 44.777306, 2.503813, 0.048909172)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_rk7hg")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Hallway/walls"]
+transform = Transform3D(-2.1855695e-07, -5, 1.0927848e-07, 7.7647026e-22, -2.1855696e-07, -2.5, 5, -2.1855695e-07, 4.7767153e-15, 34.99759, 2.503813, 10.048909)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_rk7hg")
+skeleton = NodePath("../../..")
+
+[node name="cealing" type="Node3D" parent="Hallway"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hallway/cealing"]
+transform = Transform3D(-5, 4.371139e-08, 0, -4.371139e-07, -0.5, 0, 0, 0, 5, 0, 4.9403343, 0)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_se78b")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Hallway/cealing"]
+transform = Transform3D(-5, 4.371139e-08, 0, -4.371139e-07, -0.5, 0, 0, 0, 5, 10, 4.9403343, 0)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_se78b")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Hallway/cealing"]
+transform = Transform3D(-5, 4.371139e-08, 0, -4.371139e-07, -0.5, 0, 0, 0, 5, 10, 4.9403343, -10)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_se78b")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Hallway/cealing"]
+transform = Transform3D(-5, 4.371139e-08, 0, -4.371139e-07, -0.5, 0, 0, 0, 5, 20, 4.9403343, -10)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_se78b")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Hallway/cealing"]
+transform = Transform3D(-5, 4.371139e-08, 0, -4.371139e-07, -0.5, 0, 0, 0, 5, 20, 4.9403343, 0)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_se78b")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Hallway/cealing"]
+transform = Transform3D(-5, 4.371139e-08, 0, -4.371139e-07, -0.5, 0, 0, 0, 5, 20, 4.9403343, 10)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_se78b")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Hallway/cealing"]
+transform = Transform3D(-5, 4.371139e-08, 0, -4.371139e-07, -0.5, 0, 0, 0, 5, 30, 4.9403343, 10)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_se78b")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Hallway/cealing"]
+transform = Transform3D(-5, 4.371139e-08, 0, -4.371139e-07, -0.5, 0, 0, 0, 5, 30, 4.9403343, 0)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_se78b")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Hallway/cealing"]
+transform = Transform3D(-5, 4.371139e-08, 0, -4.371139e-07, -0.5, 0, 0, 0, 5, 40, 4.9403343, 0)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_se78b")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Hallway/cealing"]
+transform = Transform3D(-5, 4.371139e-08, 0, -4.371139e-07, -0.5, 0, 0, 0, 5, 40, 4.9403343, -10)
+material_override = ExtResource("1_qtlar")
+mesh = SubResource("PlaneMesh_se78b")
+skeleton = NodePath("../../..")
+
+[node name="Furniture" type="Node3D" parent="Hallway"]
+
+[node name="closet_v1" parent="Hallway/Furniture" instance=ExtResource("3_rk7hg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.629894)
+
+[node name="closet_v2" parent="Hallway/Furniture" instance=ExtResource("3_rk7hg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -14.629894)
+
+[node name="closet_v3" parent="Hallway/Furniture" instance=ExtResource("3_rk7hg")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 23, 0, 13.370106)
+
+[node name="closet_v4" parent="Hallway/Furniture" instance=ExtResource("3_rk7hg")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 26, 0, 13.370106)
+
+[node name="closet_v5" parent="Hallway/Furniture" instance=ExtResource("3_rk7hg")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 40, 0, -14.629895)
+
+[node name="stack_v1" parent="Hallway/Furniture" instance=ExtResource("4_se78b")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 4.7399683)
+
+[node name="stack_v2" parent="Hallway/Furniture" instance=ExtResource("4_se78b")]
+transform = Transform3D(-5.2453668e-08, 0, -1.2, 0, 1.2, 0, 1.2, 0, -5.2453668e-08, 15.600001, 0, 7.1399684)
+
+[node name="stack_v5" parent="Hallway/Furniture" instance=ExtResource("4_se78b")]
+transform = Transform3D(-5.2453668e-08, 0, -1.2, 0, 1.2, 0, 1.2, 0, -5.2453668e-08, 43.2, 0, 1.1399697)
+
+[node name="stack_v4" parent="Hallway/Furniture" instance=ExtResource("4_se78b")]
+transform = Transform3D(-5.2453668e-08, 0, -1.2, 0, 1.2, 0, 1.2, 0, -5.2453668e-08, 15.600001, 0, 8.339969)
+
+[node name="stack_v3" parent="Hallway/Furniture" instance=ExtResource("4_se78b")]
+transform = Transform3D(-1.2, 0, 1.04907336e-07, 0, 1.2, 0, -1.04907336e-07, 0, -1.2, 15.600002, 0, -14.460032)
+
+[node name="table_v1" parent="Hallway/Furniture" instance=ExtResource("5_3bgk5")]
+transform = Transform3D(-5.2453668e-08, 0, 1.2, 0, 1.2, 0, -1.2, 0, -5.2453668e-08, -4.8, 0, 1.2000003)
+
+[node name="table_v2" parent="Hallway/Furniture" instance=ExtResource("5_3bgk5")]
+transform = Transform3D(-5.2453668e-08, 0, 1.2, 0, 1.2, 0, -1.2, 0, -5.2453668e-08, 5.88, 0, -9.6)
+
+[node name="table_v3" parent="Hallway/Furniture" instance=ExtResource("5_3bgk5")]
+transform = Transform3D(1.4901161e-07, 0, -1.2000002, 0, 1.2, 0, 1.2000002, 0, 1.4901161e-07, 24.12, 0, -9.600001)
+
+[node name="table_v4" parent="Hallway/Furniture" instance=ExtResource("5_3bgk5")]
+transform = Transform3D(1.4901161e-07, 0, -1.2000002, 0, 1.2, 0, 1.2000002, 0, 1.4901161e-07, 33.720005, 0, 7.200001)
+
+[node name="table_v5" parent="Hallway/Furniture" instance=ExtResource("5_3bgk5")]
+transform = Transform3D(-4.410427e-08, 0, 1.2000002, 0, 1.2, 0, -1.2000002, 0, -4.410427e-08, 36.120007, 0, -9.600002)
+
+[node name="table_v6" parent="Hallway/Furniture" instance=ExtResource("6_f74lx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -14)
+
+[node name="table_v7" parent="Hallway/Furniture" instance=ExtResource("6_f74lx")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 44, 0, -0.9999999)
+
+[node name="table_v8" parent="Hallway/Furniture" instance=ExtResource("7_ptc3g")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -2.4, 0, -4.32)
+
+[node name="Lights" type="Node3D" parent="Hallway"]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Hallway/Lights"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 4.873885, -1.4424758e-07)
+light_color = Color(0.9228273, 0.692384, 0, 1)
+spot_range = 10.160071
+spot_angle = 64.677895
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Hallway/Lights"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 15, 4.8738847, -8)
+light_color = Color(0.9228273, 0.692384, 0, 1)
+spot_range = 10.160071
+spot_angle = 64.677895
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Hallway/Lights"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 23, 4.873885, 6)
+light_color = Color(0.9228273, 0.692384, 0, 1)
+spot_range = 10.160071
+spot_angle = 64.677895
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Hallway/Lights"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 40, 4.8738847, -4)
+light_color = Color(0.9228273, 0.692384, 0, 1)
+spot_range = 10.160071
+spot_angle = 64.677895

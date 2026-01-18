@@ -1,0 +1,10 @@
+Assets:
+	Characters:
+		casual_male = https://www.cgtrader.com/designers/manoeldarochadeoliveira?utm_source=credit&utm_source=credit_item_page
+		
+
+Code:
+	player & camera movement = [
+		LegionGames (Youtube) = Juiced Up First Person Character Controller Tutorial - Godot 3D FPS
+		ClearCode (Youtube) = Recreating Zelda: Breath of the Wild in Godot [ + the ultimate intro to 3D game dev ]
+	]

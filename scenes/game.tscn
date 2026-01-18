@@ -1,0 +1,100 @@
+[gd_scene load_steps=13 format=3 uid="uid://61rd2kdlq7kl"]
+
+[ext_resource type="PackedScene" uid="uid://mbnnpjnrhapr" path="res://scenes/furniture/table_v_4.tscn" id="2_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://bbqain2aor8vs" path="res://scenes/player.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://csqjumiqhqx1s" path="res://scenes/furniture/closet_v_1.tscn" id="3_iywne"]
+[ext_resource type="Material" uid="uid://demjev8beyfkh" path="res://assets/materials/wooden/m_wood_dark.tres" id="5_p57ef"]
+[ext_resource type="PackedScene" uid="uid://cgjtjdtixyvlk" path="res://assets/furniture/beds/bed_v1.glb" id="10_kvpfn"]
+[ext_resource type="Material" uid="uid://b1ctx5eoennq4" path="res://assets/materials/cloth/m_cloth_mild.tres" id="11_dinhu"]
+
+[sub_resource type="Environment" id="Environment_yqjtg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_uwrxv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yqjtg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gee14"]
+size = Vector3(1, 1.3000001, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u5sy4"]
+size = Vector3(2.1000001, 3.6000001, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p57ef"]
+size = Vector3(1.59906, 0.7661743, 3.225647)
+
+[node name="Game" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("2_yqjtg")]
+transform = Transform3D(0.25881907, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, 0.25881907, 1, 1, 0)
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_yqjtg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Platform" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Platform"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform/StaticBody3D"]
+transform = Transform3D(20, 0, 0, 0, 0.2, 0, 0, 0, 15, 0, 0, 0)
+mesh = SubResource("BoxMesh_uwrxv")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform/StaticBody3D"]
+transform = Transform3D(20, 0, 0, 0, 0.2, 0, 0, 0, 15, 0, 0, 0)
+shape = SubResource("BoxShape3D_yqjtg")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Platform/StaticBody3D"]
+transform = Transform3D(8, 0, 0, 0, -3.4969114e-09, -5.9999995, 0, 0.080000006, -2.6226832e-07, 0, 1.2000003, -2.8000004)
+mesh = SubResource("BoxMesh_uwrxv")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Platform/StaticBody3D"]
+transform = Transform3D(8, 0, 0, 0, -3.4969112e-09, -5.9999995, 0, 0.080000006, -2.6226832e-07, 0, 1.2000003, -2.8000004)
+shape = SubResource("BoxShape3D_yqjtg")
+
+[node name="table_v4" parent="Platform" instance=ExtResource("2_lbhrr")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -6, 0, -3.6000001)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Platform/table_v4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform/table_v4/StaticBody3D"]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, 0.64999986, 0)
+shape = SubResource("BoxShape3D_gee14")
+
+[node name="closet_v1" parent="Platform" instance=ExtResource("3_iywne")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0, 8.742278e-08)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Platform/closet_v1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform/closet_v1/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.049999934, 1.7999998, 0)
+shape = SubResource("BoxShape3D_u5sy4")
+
+[node name="bed_v1" parent="Platform" instance=ExtResource("10_kvpfn")]
+transform = Transform3D(-5.2453668e-08, 0, 1.2, 0, 1.2, 0, -1.2, 0, -5.2453668e-08, -7, 0, 3)
+
+[node name="Cube_081" parent="Platform/bed_v1/bed_controller_001" index="0"]
+material_override = ExtResource("5_p57ef")
+
+[node name="Cube_083" parent="Platform/bed_v1/bed_controller_001" index="1"]
+material_override = ExtResource("11_dinhu")
+
+[node name="Cube_084" parent="Platform/bed_v1/bed_controller_001" index="2"]
+material_override = ExtResource("5_p57ef")
+
+[node name="Cube_085" parent="Platform/bed_v1/bed_controller_001" index="3"]
+material_override = ExtResource("5_p57ef")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Platform/bed_v1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform/bed_v1/StaticBody3D"]
+transform = Transform3D(0.99999976, 0, -2.6894043e-12, 0, 0.99999976, 0, 2.6894043e-12, 0, 0.99999976, -0.0330503, 0.27914423, -0.03256035)
+shape = SubResource("BoxShape3D_p57ef")
+
+[editable path="Platform/bed_v1"]

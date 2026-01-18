@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://pwivido0fflr"]
+
+[ext_resource type="PackedScene" uid="uid://dca352xwlv2bc" path="res://assets/furniture/tables/1 tab/table_v5.glb" id="1_u7bd4"]
+[ext_resource type="Material" uid="uid://bmrfi0vkstydh" path="res://assets/materials/wooden/m_wood_mild.tres" id="2_73mae"]
+[ext_resource type="Material" uid="uid://ddmwblkcpq8gb" path="res://assets/materials/wooden/m_wood_light.tres" id="3_b0c8c"]
+[ext_resource type="Material" uid="uid://demjev8beyfkh" path="res://assets/materials/wooden/m_wood_dark.tres" id="4_a4ts2"]
+
+[node name="table_v5" type="Node3D"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+
+[node name="table_v5" parent="." instance=ExtResource("1_u7bd4")]
+
+[node name="Drawer 1_024" parent="table_v5/Table Controller v2_005" index="0"]
+material_override = ExtResource("2_73mae")
+
+[node name="Cube_079" parent="table_v5/Table Controller v2_005/Drawer 1_024" index="0"]
+material_override = ExtResource("3_b0c8c")
+
+[node name="Drawer 1_033" parent="table_v5/Table Controller v2_005" index="1"]
+material_override = ExtResource("4_a4ts2")
+
+[node name="Drawer 1_037" parent="table_v5/Table Controller v2_005" index="2"]
+material_override = ExtResource("2_73mae")
+
+[node name="Cube_078" parent="table_v5/Table Controller v2_005/Drawer 1_037" index="0"]
+material_override = ExtResource("3_b0c8c")
+
+[node name="Top_011" parent="table_v5/Table Controller v2_005" index="3"]
+material_override = ExtResource("4_a4ts2")
+
+[node name="Top_012" parent="table_v5/Table Controller v2_005" index="4"]
+material_override = ExtResource("4_a4ts2")
+
+[editable path="table_v5"]

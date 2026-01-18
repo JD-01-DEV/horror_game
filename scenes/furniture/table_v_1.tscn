@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://2op3sdfvv7xe"]
+
+[ext_resource type="PackedScene" uid="uid://w4avr0o6g5fk" path="res://assets/furniture/tables/2 tabs/table_v1.glb" id="1_in8jw"]
+[ext_resource type="Material" uid="uid://demjev8beyfkh" path="res://assets/materials/wooden/m_wood_dark.tres" id="2_tooma"]
+[ext_resource type="Material" uid="uid://bmrfi0vkstydh" path="res://assets/materials/wooden/m_wood_mild.tres" id="3_fcbll"]
+[ext_resource type="Material" uid="uid://ddmwblkcpq8gb" path="res://assets/materials/wooden/m_wood_light.tres" id="4_l4b7p"]
+
+[node name="table_v1" type="Node3D"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+
+[node name="table_v1" parent="." instance=ExtResource("1_in8jw")]
+
+[node name="Drawer 1_003" parent="table_v1/Table Controller v2_008" index="0"]
+material_override = ExtResource("2_tooma")
+
+[node name="Drawer 1_004" parent="table_v1/Table Controller v2_008" index="1"]
+material_override = ExtResource("3_fcbll")
+
+[node name="Cube_009" parent="table_v1/Table Controller v2_008/Drawer 1_004" index="0"]
+material_override = ExtResource("4_l4b7p")
+
+[node name="Drawer 1_017" parent="table_v1/Table Controller v2_008" index="2"]
+material_override = ExtResource("3_fcbll")
+
+[node name="Cube_068" parent="table_v1/Table Controller v2_008/Drawer 1_017" index="0"]
+material_override = ExtResource("4_l4b7p")
+
+[node name="Drawer 1_018" parent="table_v1/Table Controller v2_008" index="3"]
+material_override = ExtResource("3_fcbll")
+
+[node name="Cube_069" parent="table_v1/Table Controller v2_008/Drawer 1_018" index="0"]
+material_override = ExtResource("4_l4b7p")
+
+[node name="Drawer 1_022" parent="table_v1/Table Controller v2_008" index="4"]
+material_override = ExtResource("3_fcbll")
+
+[node name="Cube_070" parent="table_v1/Table Controller v2_008/Drawer 1_022" index="0"]
+material_override = ExtResource("4_l4b7p")
+
+[node name="Top_017" parent="table_v1/Table Controller v2_008" index="5"]
+material_override = ExtResource("2_tooma")
+
+[node name="Top_018" parent="table_v1/Table Controller v2_008" index="6"]
+material_override = ExtResource("2_tooma")
+
+[editable path="table_v1"]

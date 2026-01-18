@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dllt7a77se5wp"]
+
+[ext_resource type="PackedScene" uid="uid://uug888uwk4t8" path="res://assets/furniture/stacks/stack_v1.glb" id="1_ab45t"]
+[ext_resource type="Material" uid="uid://demjev8beyfkh" path="res://assets/materials/wooden/m_wood_dark.tres" id="2_ebva3"]
+[ext_resource type="Material" uid="uid://bmrfi0vkstydh" path="res://assets/materials/wooden/m_wood_mild.tres" id="3_i0rk8"]
+
+[node name="stack_v1" type="Node3D"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+
+[node name="stack_v1" parent="." instance=ExtResource("1_ab45t")]
+
+[node name="Cube_086" parent="stack_v1/stack_controller_001" index="0"]
+material_override = ExtResource("2_ebva3")
+
+[node name="Cube_087" parent="stack_v1/stack_controller_001" index="1"]
+material_override = ExtResource("3_i0rk8")
+
+[node name="Cube_088" parent="stack_v1/stack_controller_001" index="2"]
+material_override = ExtResource("2_ebva3")
+
+[node name="Cube_089" parent="stack_v1/stack_controller_001" index="3"]
+material_override = ExtResource("3_i0rk8")
+
+[editable path="stack_v1"]
