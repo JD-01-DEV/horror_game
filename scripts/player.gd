@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-const SPEED = 1.5
-const RUN_SPEED = SPEED + 2
+const SPEED = 2
+const RUN_SPEED = SPEED + 2.2
 const SENSITIVITY = 0.005
 
 #jump
@@ -47,11 +47,11 @@ func handle_movement ():
 		if(Input.is_action_pressed("sprint")):
 			velocity.x = direction.x * RUN_SPEED
 			velocity.z = direction.z * RUN_SPEED
-			animation_player.play("Rig|man_run_in_place")
+			animation_player.play("running")
 		else:
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
-			animation_player.play("Rig|man_walk_in_place")
+			animation_player.play("walking")
 		
 		var target_angle = -input_dir.angle() + PI/2
 		player_mesh.rotation.y = target_angle
@@ -61,7 +61,7 @@ func handle_movement ():
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		if(is_on_floor()):
-			animation_player.play("Rig|man_idle")
+			animation_player.play("idle")
 
 func handle_jump(delta):
 	# Add the gravity.
@@ -73,4 +73,4 @@ func handle_jump(delta):
 		velocity.y = -jump_velocity
 		var gravity = jump_gravity if velocity.y > 0.0 else jump_gravity
 		velocity.y -= gravity * delta
-		animation_player.play("Rig|man_jump_in_place")
+		animation_player.play("jump")

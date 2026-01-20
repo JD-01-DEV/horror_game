@@ -25,7 +25,6 @@ size = Vector3(1.59906, 0.7661743, 3.225647)
 [node name="Game" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("2_yqjtg")]
-transform = Transform3D(0.25881907, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, 0.25881907, 1, 0.099999964, 0)
 
 [node name="World" type="Node3D" parent="."]
 
