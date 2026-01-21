@@ -13,9 +13,10 @@ const SENSITIVITY = 0.005
 @onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent))
 # source: https://youtu.be/I0elaGY6hXA?feature=shared
 
-@onready var player_camera: Camera3D = $player_camera
+#@onready var player_camera: Camera3D = $player_camera
 @onready var tp_camera: Node3D = $TPCamera/Camera3D
-@onready var animation_player: AnimationPlayer = $casual_male/AnimationPlayer
+#@onready var animation_player: AnimationPlayer = $casual_male/AnimationPlayer
+@onready var casual_male: Node3D = $casual_male
 
 @onready var player_mesh: Node3D = $casual_male
 
@@ -30,11 +31,11 @@ func _physics_process(delta: float) -> void:
 #func _input(event: InputEvent) -> void:
 	#handle_camera_movement(event)
 
-func handle_camera_movement(event : InputEvent):
-	if event is InputEventMouseMotion:
-		rotation.y -= event.relative.x * SENSITIVITY
-		player_camera.rotation.x -= event.relative.y * SENSITIVITY
-		clamp(player_camera.rotation.x, -80 , 80)
+#func handle_camera_movement(event : InputEvent):
+	#if event is InputEventMouseMotion:
+		#rotation.y -= event.relative.x * SENSITIVITY
+		#player_camera.rotation.x -= event.relative.y * SENSITIVITY
+		#clamp(player_camera.rotation.x, -80 , 80)
 
 func handle_movement ():
 	# Get the input direction and handle the movement/deceleration.
@@ -47,21 +48,20 @@ func handle_movement ():
 		if(Input.is_action_pressed("sprint")):
 			velocity.x = direction.x * RUN_SPEED
 			velocity.z = direction.z * RUN_SPEED
-			animation_player.play("running")
+			casual_male.set_move_state("Running")
 		else:
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
-			animation_player.play("walking")
+			casual_male.set_move_state("Walking")
 		
 		var target_angle = -input_dir.angle() + PI/2
 		player_mesh.rotation.y = target_angle
-		
 		
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		if(is_on_floor()):
-			animation_player.play("idle")
+			casual_male.set_move_state("Idle")
 
 func handle_jump(delta):
 	# Add the gravity.
@@ -73,4 +73,4 @@ func handle_jump(delta):
 		velocity.y = -jump_velocity
 		var gravity = jump_gravity if velocity.y > 0.0 else jump_gravity
 		velocity.y -= gravity * delta
-		animation_player.play("jump")
+		casual_male.set_move_state("Jump")
