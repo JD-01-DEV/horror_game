@@ -1,8 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://bbqain2aor8vs"]
+[gd_scene load_steps=31 format=3 uid="uid://bbqain2aor8vs"]
 
 [ext_resource type="Script" uid="uid://ce4xwuqhpi7q6" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Material" uid="uid://ceiri00yjuyy8" path="res://assets/characters/casual_male/m_casual_male.tres" id="3_dqkch"]
-[ext_resource type="PackedScene" uid="uid://buvgnpcmrqqpf" path="res://assets/characters/casual_male/casual_male.glb" id="3_qlg0r"]
+[ext_resource type="PackedScene" uid="uid://co5j2exflrkoj" path="res://scenes/characters/casual_male.glb" id="3_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://bs1wrc4d34seg" path="res://scenes/tp_camera.tscn" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://uo4q5amcqgt5" path="res://scenes/characters/casual_male.gd" id="4_qlg0r"]
 
@@ -10,6 +10,9 @@
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dqkch"]
 animation = &"crouch_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ur7pv"]
+animation = &"falling"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qlg0r"]
 animation = &"idle"
@@ -77,6 +80,8 @@ xfade_time = 0.2
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3v2ag"]
 states/Crouch/node = SubResource("AnimationNodeAnimation_dqkch")
 states/Crouch/position = Vector2(468, 322)
+states/Falling/node = SubResource("AnimationNodeAnimation_ur7pv")
+states/Falling/position = Vector2(664, -45)
 states/Idle/node = SubResource("AnimationNodeAnimation_qlg0r")
 states/Idle/position = Vector2(302, 100)
 states/Jump/node = SubResource("AnimationNodeAnimation_tuyoq")
@@ -87,7 +92,7 @@ states/Start/position = Vector2(193, 100)
 states/Walking/node = SubResource("AnimationNodeAnimation_smehm")
 states/Walking/position = Vector2(468, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ur7pv"), "Idle", "Walking", SubResource("AnimationNodeStateMachineTransition_y4r1p"), "Walking", "Running", SubResource("AnimationNodeStateMachineTransition_d2wvv"), "Walking", "Idle", SubResource("AnimationNodeStateMachineTransition_qlg0r"), "Running", "Walking", SubResource("AnimationNodeStateMachineTransition_tuyoq"), "Idle", "Crouch", SubResource("AnimationNodeStateMachineTransition_fjrip"), "Walking", "Crouch", SubResource("AnimationNodeStateMachineTransition_smehm"), "Running", "Crouch", SubResource("AnimationNodeStateMachineTransition_3v2ag"), "Crouch", "Running", SubResource("AnimationNodeStateMachineTransition_jej6c"), "Crouch", "Walking", SubResource("AnimationNodeStateMachineTransition_f1ej7"), "Crouch", "Idle", SubResource("AnimationNodeStateMachineTransition_oprun"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_a8ls1"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_qfm1y"), "Walking", "Jump", SubResource("AnimationNodeStateMachineTransition_fulsm"), "Jump", "Walking", SubResource("AnimationNodeStateMachineTransition_4r5pv"), "Jump", "Running", SubResource("AnimationNodeStateMachineTransition_60mlk"), "Running", "Jump", SubResource("AnimationNodeStateMachineTransition_i4ail")]
-graph_offset = Vector2(-151, -63)
+graph_offset = Vector2(52, -133)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_3vyb7")
@@ -100,15 +105,11 @@ shape = SubResource("CapsuleShape3D_qhqgy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 spring_length = 2.5
 
-[node name="casual_male" parent="." instance=ExtResource("3_qlg0r")]
+[node name="casual_male" parent="." instance=ExtResource("3_qhqgy")]
 script = ExtResource("4_qlg0r")
 
 [node name="casual_male" parent="casual_male/player/Skeleton3D" index="0"]
 material_override = ExtResource("3_dqkch")
-
-[node name="AnimationPlayer" parent="casual_male" index="1"]
-autoplay = "idle"
-playback_default_blend_time = 0.6
 
 [node name="AnimationTree" type="AnimationTree" parent="casual_male"]
 tree_root = SubResource("AnimationNodeStateMachine_3v2ag")
