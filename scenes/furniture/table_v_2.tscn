@@ -6,7 +6,6 @@
 [ext_resource type="Material" uid="uid://bmrfi0vkstydh" path="res://assets/materials/wooden/m_wood_mild.tres" id="4_fke4q"]
 
 [node name="table_v2" type="Node3D"]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 
 [node name="table_v2" parent="." instance=ExtResource("1_ftnny")]
 

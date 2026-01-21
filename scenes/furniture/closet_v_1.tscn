@@ -8,37 +8,35 @@
 [node name="closet_v1" type="Node3D"]
 
 [node name="closet_v1" parent="." instance=ExtResource("1_jdn5d")]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 
-[node name="Base_001" parent="closet_v1/closet comtroller" index="0"]
-material_override = ExtResource("2_ri8fh")
-
-[node name="Base_002" parent="closet_v1/closet comtroller" index="1"]
-transform = Transform3D(5.677006, 0, 0, 0, 5.6770062, 0, 0, 0, 5.677006, 4.558524, 0.57330155, 1.7999834)
+[node name="Base_013" parent="closet_v1/closet comtroller_001" index="0"]
 material_override = ExtResource("3_xcixu")
 
-[node name="Base_008" parent="closet_v1/closet comtroller/Base_002" index="0"]
+[node name="Base_011" parent="closet_v1/closet comtroller_001/Base_013" index="0"]
 material_override = ExtResource("2_ri8fh")
 
-[node name="Cube_026" parent="closet_v1/closet comtroller/Base_002" index="1"]
+[node name="Cube_001" parent="closet_v1/closet comtroller_001/Base_013" index="1"]
 material_override = ExtResource("4_rflh6")
 
-[node name="Base_005" parent="closet_v1/closet comtroller" index="2"]
+[node name="Base_014" parent="closet_v1/closet comtroller_001" index="1"]
 material_override = ExtResource("3_xcixu")
 
-[node name="Base_009" parent="closet_v1/closet comtroller/Base_005" index="0"]
+[node name="Base_012" parent="closet_v1/closet comtroller_001/Base_014" index="0"]
 material_override = ExtResource("2_ri8fh")
 
-[node name="Cube_080" parent="closet_v1/closet comtroller/Base_005" index="1"]
+[node name="Cube_032" parent="closet_v1/closet comtroller_001/Base_014" index="1"]
 material_override = ExtResource("4_rflh6")
 
-[node name="Drawer 1_005" parent="closet_v1/closet comtroller" index="3"]
+[node name="Base_015" parent="closet_v1/closet comtroller_001" index="2"]
 material_override = ExtResource("2_ri8fh")
 
-[node name="Drawer 1_006" parent="closet_v1/closet comtroller" index="4"]
+[node name="Drawer 1_035" parent="closet_v1/closet comtroller_001" index="3"]
 material_override = ExtResource("2_ri8fh")
 
-[node name="Drawer 1_007" parent="closet_v1/closet comtroller" index="5"]
+[node name="Drawer 1_036" parent="closet_v1/closet comtroller_001" index="4"]
+material_override = ExtResource("2_ri8fh")
+
+[node name="Drawer 1_038" parent="closet_v1/closet comtroller_001" index="5"]
 material_override = ExtResource("2_ri8fh")
 
 [editable path="closet_v1"]
