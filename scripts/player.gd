@@ -20,10 +20,15 @@ const SENSITIVITY = 0.005
 
 @onready var player_mesh: Node3D = $casual_male
 
+# Inputs
+var sprinting
+var jumping
+
 #func _ready() -> void:
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta: float) -> void:
+	set_inputs()
 	handle_movement()
 	handle_jump(delta)
 	move_and_slide()
@@ -37,35 +42,39 @@ func _physics_process(delta: float) -> void:
 		#player_camera.rotation.x -= event.relative.y * SENSITIVITY
 		#clamp(player_camera.rotation.x, -80 , 80)
 
+func set_inputs():
+	sprinting = Input.is_action_pressed("sprint")
+	jumping = Input.is_action_just_pressed("jump")
+
 func handle_movement ():
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace target_angle
 	# UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("left", "right", "forward", "backward").rotated(-tp_camera.global_rotation.y)
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction := (Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	if direction:
-		if(Input.is_action_pressed("sprint")):
-			velocity.x = direction.x * RUN_SPEED
-			velocity.z = direction.z * RUN_SPEED
-			if(is_on_floor()):
-				casual_male.set_move_state("Running")
-		else:
-			velocity.x = direction.x * SPEED
-			velocity.z = direction.z * SPEED
-			if(is_on_floor()):
-				casual_male.set_move_state("Walking")
+	if direction && is_on_floor():
 		
-		var target_angle = -input_dir.angle() + PI/2
-		player_mesh.rotation.y = target_angle
+		if(sprinting):
+			casual_male.set_move_state("Running")
+			velocity.x = move_toward(velocity.x, direction.x * RUN_SPEED, 2.0)
+			velocity.z = move_toward(velocity.z, direction.z * RUN_SPEED, 2.0)
+		else:
+			velocity.x = move_toward(velocity.x, direction.x * SPEED, 2.0)
+			velocity.z = move_toward(velocity.z, direction.z * SPEED, 2.0)
+			casual_male.set_move_state("Walking")
+			
+		var target_angle: float = -input_dir.angle() + PI/2
+		
+		player_mesh.rotation.y = lerp(player_mesh.rotation.y, target_angle, 0.08)
 		
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
 		if(is_on_floor()):
 			casual_male.set_move_state("Idle")
 		else:
-			casual_male.set_move_state("Falling")
+			casual_male.set_move_state("Jump")
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 func handle_jump(delta):
 	# Add the gravity.
@@ -73,7 +82,7 @@ func handle_jump(delta):
 		velocity += get_gravity() * delta
 	
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if jumping and is_on_floor():
 		velocity.y = -jump_velocity
 		var gravity = jump_gravity if velocity.y > 0.0 else jump_gravity
 		velocity.y -= gravity * delta
