@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://co5j2exflrkoj"
-path="res://.godot/imported/casual_male.glb-390ff1531fd84aef9a322350e5037ec2.scn"
+path="res://.godot/imported/casual_male.glb-705d76657eaa53492fb11165f76a1d0f.scn"
 
 [deps]
 
-source_file="res://scenes/characters/casual_male.glb"
-dest_files=["res://.godot/imported/casual_male.glb-390ff1531fd84aef9a322350e5037ec2.scn"]
+source_file="res://assets/characters/casual_male/casual_male.glb"
+dest_files=["res://.godot/imported/casual_male.glb-705d76657eaa53492fb11165f76a1d0f.scn"]
 
 [params]
 
@@ -6209,9 +6209,9 @@ _subresources={
 },
 "idle": {
 "save_to_file/enabled": false,
-"save_to_file/fallback_path": "",
-"save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "",
+"save_to_file/fallback_path": "res://animations/characters/casual_male/flashlight.res",
+"save_to_file/keep_custom_tracks": false,
+"save_to_file/path": "uid://bq6to12wujvr3",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,

@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://eu4111pgm0h6"]
+
+[ext_resource type="PackedScene" uid="uid://dqkdmbxtuurcu" path="res://assets/tools/flashlight.glb" id="1_ameej"]
+[ext_resource type="Script" uid="uid://peqmxxym4xx7" path="res://scripts/tools/flashlight.gd" id="2_j2an5"]
+[ext_resource type="Material" uid="uid://0t0us0qv8iyy" path="res://assets/materials/tools/m_flashlight.tres" id="2_yayvt"]
+
+[node name="Flashlight" instance=ExtResource("1_ameej")]
+script = ExtResource("2_j2an5")
+
+[node name="flashlight" parent="." index="0"]
+material_override = ExtResource("2_yayvt")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." index="1"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.14800173, 0, 6.469361e-09)
+light_energy = 4.0

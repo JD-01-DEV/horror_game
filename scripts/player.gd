@@ -4,6 +4,9 @@ const SPEED = 2
 const RUN_SPEED = SPEED + 2.2
 const SENSITIVITY = 0.005
 
+@onready var flashlight: Node3D = $casual_male/player/Skeleton3D/BoneAttachment3D/Flashlight
+@onready var animation_tree: AnimationTree = $casual_male/AnimationTree
+
 #jump
 @export var jump_height : float = 1
 @export var jump_time_to_peak : float = 0.4
@@ -23,6 +26,7 @@ const SENSITIVITY = 0.005
 # Inputs
 var sprinting
 var jumping
+var flashing
 
 #func _ready() -> void:
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -31,6 +35,7 @@ func _physics_process(delta: float) -> void:
 	set_inputs()
 	handle_movement()
 	handle_jump(delta)
+	handle_flashlight()
 	move_and_slide()
 
 #func _input(event: InputEvent) -> void:
@@ -45,6 +50,7 @@ func _physics_process(delta: float) -> void:
 func set_inputs():
 	sprinting = Input.is_action_pressed("sprint")
 	jumping = Input.is_action_just_pressed("jump")
+	flashing = Input.is_action_just_pressed("flashlight")
 
 func handle_movement ():
 	# Get the input direction and handle the movement/deceleration.
@@ -57,20 +63,23 @@ func handle_movement ():
 		
 		if(sprinting):
 			casual_male.set_move_state("Running")
+			animation_tree.set("parameters/BlendSpace2D/blend_position", Vector2(0, 1))
 			velocity.x = move_toward(velocity.x, direction.x * RUN_SPEED, 2.0)
 			velocity.z = move_toward(velocity.z, direction.z * RUN_SPEED, 2.0)
 		else:
 			velocity.x = move_toward(velocity.x, direction.x * SPEED, 2.0)
 			velocity.z = move_toward(velocity.z, direction.z * SPEED, 2.0)
 			casual_male.set_move_state("Walking")
+			animation_tree.set("parameters/BlendSpace2D/blend_position", Vector2(0, 0.5))
 			
 		var target_angle: float = -input_dir.angle() + PI/2
 		
-		player_mesh.rotation.y = lerp(player_mesh.rotation.y, target_angle, 0.08)
+		player_mesh.rotation.y = target_angle
 		
 	else:
 		if(is_on_floor()):
 			casual_male.set_move_state("Idle")
+			animation_tree.set("parameters/BlendSpace2D/blend_position", Vector2(0, 0))
 		else:
 			casual_male.set_move_state("Jump")
 		velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -87,3 +96,10 @@ func handle_jump(delta):
 		var gravity = jump_gravity if velocity.y > 0.0 else jump_gravity
 		velocity.y -= gravity * delta
 		casual_male.set_move_state("Jump")
+
+func handle_flashlight():
+	if flashing:
+		if flashlight.visible == true:
+			flashlight.visible = false
+		else:
+			flashlight.visible = true

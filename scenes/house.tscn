@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cst0dyd553dvs"]
+[gd_scene load_steps=13 format=3 uid="uid://cst0dyd553dvs"]
 
 [ext_resource type="Material" uid="uid://b0jjgfoto8v4n" path="res://assets/materials/wooden/planks/m_plank_grey.tres" id="1_qtlar"]
 [ext_resource type="Material" uid="uid://dec26lcjbtx1s" path="res://assets/materials/wooden/planks/m_plank_grey_old.tres" id="1_rk7hg"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://2op3sdfvv7xe" path="res://scenes/furniture/table_v_1.tscn" id="5_3bgk5"]
 [ext_resource type="PackedScene" uid="uid://cp2al2imkasbn" path="res://scenes/furniture/table_v_2.tscn" id="6_f74lx"]
 [ext_resource type="PackedScene" uid="uid://mbnnpjnrhapr" path="res://scenes/furniture/table_v_4.tscn" id="7_ptc3g"]
+[ext_resource type="PackedScene" uid="uid://bbqain2aor8vs" path="res://scenes/player.tscn" id="8_wcu0q"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qtlar"]
 
@@ -342,3 +343,5 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 40, 
 light_color = Color(0.9228273, 0.692384, 0, 1)
 spot_range = 10.160071
 spot_angle = 64.677895
+
+[node name="Player" parent="." instance=ExtResource("8_wcu0q")]
