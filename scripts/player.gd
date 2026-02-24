@@ -27,6 +27,7 @@ const SENSITIVITY = 0.005
 var sprinting
 var jumping
 var flashing
+var crouching
 
 #func _ready() -> void:
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -34,6 +35,7 @@ var flashing
 func _physics_process(delta: float) -> void:
 	set_inputs()
 	handle_movement()
+	handle_crouch()
 	handle_jump(delta)
 	handle_flashlight()
 	move_and_slide()
@@ -51,6 +53,7 @@ func set_inputs():
 	sprinting = Input.is_action_pressed("sprint")
 	jumping = Input.is_action_just_pressed("jump")
 	flashing = Input.is_action_just_pressed("flashlight")
+	crouching = Input.is_action_just_pressed("crouch")
 
 func handle_movement ():
 	# Get the input direction and handle the movement/deceleration.
@@ -60,30 +63,23 @@ func handle_movement ():
 	var direction := (Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if direction && is_on_floor():
-		
 		if(sprinting):
-			casual_male.set_move_state("Running")
-			animation_tree.set("parameters/BlendSpace2D/blend_position", Vector2(0, 1))
+			animation_tree.set("parameters/LocoMotion/blend_position", Vector2(0, 1))
 			velocity.x = move_toward(velocity.x, direction.x * RUN_SPEED, 2.0)
 			velocity.z = move_toward(velocity.z, direction.z * RUN_SPEED, 2.0)
 		else:
+			animation_tree.set("parameters/LocoMotion/blend_position", Vector2(0, 0.5))
 			velocity.x = move_toward(velocity.x, direction.x * SPEED, 2.0)
 			velocity.z = move_toward(velocity.z, direction.z * SPEED, 2.0)
-			casual_male.set_move_state("Walking")
-			animation_tree.set("parameters/BlendSpace2D/blend_position", Vector2(0, 0.5))
 			
 		var target_angle: float = -input_dir.angle() + PI/2
-		
 		player_mesh.rotation.y = target_angle
 		
 	else:
 		if(is_on_floor()):
-			casual_male.set_move_state("Idle")
-			animation_tree.set("parameters/BlendSpace2D/blend_position", Vector2(0, 0))
-		else:
-			casual_male.set_move_state("Jump")
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+			animation_tree.set("parameters/LocoMotion/blend_position", Vector2(0, 0))
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
 
 func handle_jump(delta):
 	# Add the gravity.
@@ -96,10 +92,23 @@ func handle_jump(delta):
 		var gravity = jump_gravity if velocity.y > 0.0 else jump_gravity
 		velocity.y -= gravity * delta
 		casual_male.set_move_state("Jump")
+	else:
+		if flashlight.visible: 
+			casual_male.set_move_state("Flashlight") 
+		else: 
+			casual_male.set_move_state("LocoMotion") 
 
 func handle_flashlight():
 	if flashing:
 		if flashlight.visible == true:
 			flashlight.visible = false
+			casual_male.set_move_state("LocoMotion")
 		else:
 			flashlight.visible = true
+			casual_male.set_move_state("Flashlight")
+
+func handle_crouch():
+	if crouching:
+		casual_male.set_move_state("Crouch")
+	#else:
+		#casual_male.set_move_state("LocoMotion")  
