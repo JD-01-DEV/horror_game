@@ -7,6 +7,9 @@ const SENSITIVITY = 0.005
 @onready var flashlight: Node3D = $casual_male/player/Skeleton3D/BoneAttachment3D/Flashlight
 @onready var animation_tree: AnimationTree = $casual_male/AnimationTree
 
+@onready var tp_camera: Camera3D = $TPCamera/Camera3D
+@onready var fp_camera: Camera3D = $FPCamera
+
 #jump
 @export var jump_height : float = 1
 @export var jump_time_to_peak : float = 0.4
@@ -16,18 +19,18 @@ const SENSITIVITY = 0.005
 @onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent))
 # source: https://youtu.be/I0elaGY6hXA?feature=shared
 
-#@onready var player_camera: Camera3D = $player_camera
-@onready var tp_camera: Node3D = $TPCamera/Camera3D
 #@onready var animation_player: AnimationPlayer = $casual_male/AnimationPlayer
-@onready var casual_male: Node3D = $casual_male
-
 @onready var player_mesh: Node3D = $casual_male
+
+# camera states
+var FPV = false
 
 # Inputs
 var sprinting
 var jumping
 var flashing
 var crouching
+var switch_camera
 
 #func _ready() -> void:
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -38,6 +41,7 @@ func _physics_process(delta: float) -> void:
 	handle_crouch()
 	handle_jump(delta)
 	handle_flashlight()
+	handle_camera_state()
 	move_and_slide()
 
 #func _input(event: InputEvent) -> void:
@@ -54,11 +58,9 @@ func set_inputs():
 	jumping = Input.is_action_just_pressed("jump")
 	flashing = Input.is_action_just_pressed("flashlight")
 	crouching = Input.is_action_just_pressed("crouch")
+	switch_camera = Input.is_action_just_pressed("camera")
 
 func handle_movement ():
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace target_angle
-	# UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("left", "right", "forward", "backward").rotated(-tp_camera.global_rotation.y)
 	var direction := (Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
@@ -77,6 +79,7 @@ func handle_movement ():
 		
 	else:
 		if(is_on_floor()):
+			animation_tree.set("parameters/LocoBlend/blend_amount", 0)
 			animation_tree.set("parameters/LocoMotion/blend_position", Vector2(0, 0))
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
@@ -88,27 +91,43 @@ func handle_jump(delta):
 	
 	# Handle jump.
 	if jumping and is_on_floor():
+		animation_tree.set("parameters/LocoBlend/blend_amount", -1)
 		velocity.y = -jump_velocity
 		var gravity = jump_gravity if velocity.y > 0.0 else jump_gravity
 		velocity.y -= gravity * delta
-		casual_male.set_move_state("Jump")
 	else:
 		if flashlight.visible: 
-			casual_male.set_move_state("Flashlight") 
+			animation_tree.set("parameters/FlashAdd/add_amount", 1)
 		else: 
-			casual_male.set_move_state("LocoMotion") 
+			animation_tree.set("parameters/FlashAdd/add_amount", 0)
 
 func handle_flashlight():
 	if flashing:
 		if flashlight.visible == true:
 			flashlight.visible = false
-			casual_male.set_move_state("LocoMotion")
+			animation_tree.set("parameters/FlashAdd/add_amount", 0)
 		else:
 			flashlight.visible = true
-			casual_male.set_move_state("Flashlight")
+			animation_tree.set("parameters/FlashAdd/add_amount", 1)
 
 func handle_crouch():
+	pass
 	if crouching:
-		casual_male.set_move_state("Crouch")
-	#else:
-		#casual_male.set_move_state("LocoMotion")  
+		animation_tree.set("parameters/LocoBlend/blend_amount", 1)
+	else:
+		animation_tree.set("parameters/LocoBlend/blend_amount", 0)
+
+func handle_camera_state():
+	if switch_camera:
+		if FPV:
+			fp_camera.make_current()
+			FPV = false
+		else:
+			tp_camera.make_current()
+			FPV = true
+
+#func _input(event: InputEvent) -> void:
+	#if FPV and event is InputEventMouse:
+		#fp_camera.rotation.y -= event.relative.x * SENSITIVITY
+		#fp_camera.rotation.x -= event.relative.y * SENSITIVITY
+		#fp_camera.rotation.x = clamp(rotation.x, -0.6, 0.6)
