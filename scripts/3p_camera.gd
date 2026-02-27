@@ -12,7 +12,8 @@ func _process(_delta: float) -> void:
 	pass
 
 func _input(event: InputEvent) -> void:
-	rotate_from_vector(event)
+	if GameStates.FPV == false:
+		rotate_from_vector(event)
 
 func rotate_from_vector(event: InputEvent):
 	if event is InputEventMouseMotion:

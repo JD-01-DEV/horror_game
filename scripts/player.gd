@@ -4,11 +4,12 @@ const SPEED = 2
 const RUN_SPEED = SPEED + 2.2
 const SENSITIVITY = 0.005
 
+
 @onready var flashlight: Node3D = $casual_male/player/Skeleton3D/BoneAttachment3D/Flashlight
 @onready var animation_tree: AnimationTree = $casual_male/AnimationTree
 
 @onready var tp_camera: Camera3D = $TPCamera/Camera3D
-@onready var fp_camera: Camera3D = $FPCamera
+@onready var fp_camera: Camera3D = $FPCamera/Camera3d
 
 #jump
 @export var jump_height : float = 1
@@ -19,11 +20,7 @@ const SENSITIVITY = 0.005
 @onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent))
 # source: https://youtu.be/I0elaGY6hXA?feature=shared
 
-#@onready var animation_player: AnimationPlayer = $casual_male/AnimationPlayer
 @onready var player_mesh: Node3D = $casual_male
-
-# camera states
-var FPV = false
 
 # Inputs
 var sprinting
@@ -61,7 +58,11 @@ func set_inputs():
 	switch_camera = Input.is_action_just_pressed("camera")
 
 func handle_movement ():
-	var input_dir := Input.get_vector("left", "right", "forward", "backward").rotated(-tp_camera.global_rotation.y)
+	var input_dir
+	if GameStates.FPV:
+		input_dir = Input.get_vector("left", "right", "forward", "backward").rotated(-fp_camera.global_rotation.y)
+	else:
+		input_dir = Input.get_vector("left", "right", "forward", "backward").rotated(-tp_camera.global_rotation.y)
 	var direction := (Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if direction && is_on_floor():
@@ -74,9 +75,13 @@ func handle_movement ():
 			velocity.x = move_toward(velocity.x, direction.x * SPEED, 2.0)
 			velocity.z = move_toward(velocity.z, direction.z * SPEED, 2.0)
 			
-		var target_angle: float = -input_dir.angle() + PI/2
+		var target_angle: float
+		if GameStates.FPV:
+			target_angle = PI/2
+		else:
+			target_angle = -input_dir.angle() + PI/2
+			
 		player_mesh.rotation.y = target_angle
-		
 	else:
 		if(is_on_floor()):
 			animation_tree.set("parameters/LocoBlend/blend_amount", 0)
@@ -119,15 +124,16 @@ func handle_crouch():
 
 func handle_camera_state():
 	if switch_camera:
-		if FPV:
-			fp_camera.make_current()
-			FPV = false
-		else:
+		if GameStates.FPV:
+			GameStates.FPV = false
 			tp_camera.make_current()
-			FPV = true
+		else:
+			GameStates.FPV = true
+			fp_camera.make_current()
 
-#func _input(event: InputEvent) -> void:
-	#if FPV and event is InputEventMouse:
-		#fp_camera.rotation.y -= event.relative.x * SENSITIVITY
-		#fp_camera.rotation.x -= event.relative.y * SENSITIVITY
-		#fp_camera.rotation.x = clamp(rotation.x, -0.6, 0.6)
+func _input(event: InputEvent) -> void:
+	if GameStates.FPV and event is InputEventMouseMotion:
+		fp_camera.rotation.y -= event.relative.x * SENSITIVITY
+		player_mesh.rotation.y = fp_camera.rotation.y
+		fp_camera.rotation.x -= event.relative.y * SENSITIVITY
+		fp_camera.rotation.x = clamp(fp_camera.rotation.x, -1, 1)

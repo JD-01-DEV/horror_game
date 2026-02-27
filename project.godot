@@ -14,6 +14,10 @@ config/name="Horror"
 run/main_scene="uid://61rd2kdlq7kl"
 config/features=PackedStringArray("4.5", "Mobile")
 
+[autoload]
+
+GameStates="*res://scripts/states/game_states.gd"
+
 [input]
 
 forward={
