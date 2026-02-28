@@ -9,7 +9,7 @@ const SENSITIVITY = 0.005
 @onready var animation_tree: AnimationTree = $casual_male/AnimationTree
 
 @onready var tp_camera: Camera3D = $TPCamera/Camera3D
-@onready var fp_camera: Camera3D = $FPCamera/Camera3d
+@onready var fp_camera: Camera3D = $casual_male/FPCamera/Camera3d
 
 #jump
 @export var jump_height : float = 1
@@ -65,6 +65,7 @@ func handle_movement ():
 		input_dir = Input.get_vector("left", "right", "forward", "backward").rotated(-tp_camera.global_rotation.y)
 	var direction := (Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
+	
 	if direction && is_on_floor():
 		if(sprinting):
 			animation_tree.set("parameters/LocoMotion/blend_position", Vector2(0, 1))
@@ -75,13 +76,9 @@ func handle_movement ():
 			velocity.x = move_toward(velocity.x, direction.x * SPEED, 2.0)
 			velocity.z = move_toward(velocity.z, direction.z * SPEED, 2.0)
 			
-		var target_angle: float
-		if GameStates.FPV:
-			target_angle = PI/2
-		else:
-			target_angle = -input_dir.angle() + PI/2
-			
-		player_mesh.rotation.y = target_angle
+		var target_angle = -input_dir.angle() + PI/2
+		if not GameStates.FPV:	
+			player_mesh.rotation.y = target_angle
 	else:
 		if(is_on_floor()):
 			animation_tree.set("parameters/LocoBlend/blend_amount", 0)
@@ -133,7 +130,6 @@ func handle_camera_state():
 
 func _input(event: InputEvent) -> void:
 	if GameStates.FPV and event is InputEventMouseMotion:
-		fp_camera.rotation.y -= event.relative.x * SENSITIVITY
-		player_mesh.rotation.y = fp_camera.rotation.y
+		player_mesh.rotation.y -= event.relative.x * SENSITIVITY
 		fp_camera.rotation.x -= event.relative.y * SENSITIVITY
 		fp_camera.rotation.x = clamp(fp_camera.rotation.x, -1, 1)
