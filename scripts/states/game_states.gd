@@ -2,6 +2,7 @@ extends Node
 
 # camera states
 var FPV = false
+var camera_lock = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

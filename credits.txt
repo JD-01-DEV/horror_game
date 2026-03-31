@@ -10,6 +10,7 @@ Websites:
 Assets:
 	Characters:
 		casual_male = https://www.cgtrader.com/designers/manoeldarochadeoliveira?utm_source=credit&utm_source=credit_item_page
+		zombie = https://sketchfab.com/3d-models/zombie-6ff73b06cf63405d9557720c78cf5e0c
 		
 
 Code:
